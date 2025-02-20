@@ -11,7 +11,7 @@
         <h1>공지사항</h1>
     </header>
 
-    <div class="content">
+    <div class="content notice-container">
         <ul id="noticesList" class="notice-list"></ul>
     </div>
 
@@ -32,6 +32,7 @@
 
             notices.forEach(notice => {
                 const li = document.createElement("li");
+                li.classList.add("notice-item");
                 li.innerHTML = `
                     <a href="./notice_detail.html?id=${notice.id}">
                         <strong>${notice.pinned ? "📌 " : ""}${notice.title}</strong>
