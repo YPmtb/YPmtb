@@ -4,7 +4,7 @@ body {
     background-image: url('Background1.jpg'); /* 배경 이미지 적용 */
     background-size: cover;
     background-position: center;
-    background-attachment: scroll; /* 배경이 함께 스크롤되도록 설정 */
+    background-attachment: scroll;
     color: #ffffff;
     margin: 0;
     padding: 0;
@@ -29,55 +29,7 @@ header {
     box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.3);
 }
 
-/* 네비게이션 버튼 */
-.vertical-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 30px 0;
-}
-
-.vertical-nav button {
-    width: 220px;
-    margin: 12px;
-    padding: 12px 20px;
-    font-size: 1.1em;
-    font-weight: bold;
-    background: linear-gradient(45deg, #FFD700, #FFA500);
-    color: black;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.vertical-nav button:hover {
-    background: linear-gradient(45deg, #FFA500, #FFD700);
-    box-shadow: 0px 4px 8px rgba(255, 215, 0, 0.5);
-    transform: scale(1.05);
-}
-
-/* ✅ 트레일 맵 스타일 (비율 유지 & 자연스럽게 조정) */
-.trail-map {
-    text-align: center;
-    margin: 20px auto;
-    padding: 15px;
-    max-width: 90%;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.trail-map img {
-    width: 100%;
-    max-width: 800px;
-    height: auto;
-    object-fit: contain; /* 비율 유지 */
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* ✅ 공지사항 목록 썸네일 (비율 유지 & 정렬) */
+/* 공지사항 목록 썸네일 (비율 유지 & 정렬) */
 .notice-thumbnail {
     width: 150px;
     height: 100px;
@@ -87,7 +39,7 @@ header {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* ✅ 공지사항 상세 페이지 이미지 (비율 유지 & 크기 제한) */
+/* 공지사항 상세 페이지 이미지 (비율 유지 & 크기 제한) */
 .notice-image {
     width: 100%;
     max-width: 600px;
@@ -97,28 +49,6 @@ header {
     margin-top: 10px;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* 공지 입력란 크기 확대 */
-.input-large {
-    width: 100%;
-    padding: 12px;
-    font-size: 1.2em;
-    margin-bottom: 10px;
-}
-
-.textarea-large {
-    width: 100%;
-    height: 150px;
-    padding: 12px;
-    font-size: 1.2em;
-    margin-bottom: 10px;
-}
-
-/* 파일 업로드 버튼 스타일 */
-input[type="file"] {
-    display: block;
-    margin-bottom: 10px;
 }
 
 /* 공지사항 컨테이너 */
@@ -178,6 +108,28 @@ footer {
     background: linear-gradient(45deg, #FFA500, #FFD700);
     box-shadow: 0px 6px 12px rgba(255, 215, 0, 0.6);
     transform: scale(1.05);
+}
+
+/* 공지사항 목록 스타일 */
+.notice-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notice-item {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.notice-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* 공지사항 상세 페이지 스타일 */
