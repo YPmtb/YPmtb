@@ -1,10 +1,9 @@
-/* 전체 스타일 */
 body {
     font-family: 'Arial', sans-serif;
     background-image: url('Background1.jpg'); /* 배경 이미지 적용 */
     background-size: cover;
     background-position: center;
-    background-attachment: scroll;
+    background-attachment: scroll; /* 배경이 함께 스크롤되도록 설정 */
     color: #ffffff;
     margin: 0;
     padding: 0;
@@ -29,55 +28,155 @@ header {
     box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.3);
 }
 
-/* 공지사항 목록 썸네일 (비율 유지 & 정렬) */
-.notice-thumbnail {
-    width: 150px;
-    height: 100px;
-    object-fit: cover; /* 비율 유지하면서 정렬 */
-    margin-top: 5px;
-    border-radius: 5px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+/* 네비게이션 버튼 (세로 정렬) */
+.vertical-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
 }
 
-/* 공지사항 상세 페이지 이미지 (비율 유지 & 크기 제한) */
-.notice-image {
-    width: 100%;
-    max-width: 600px;
-    max-height: 500px;
-    height: auto;
-    object-fit: contain; /* 이미지 비율 유지 */
-    margin-top: 10px;
+.vertical-nav button {
+    width: 220px;
+    margin: 12px;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    color: black;
+    border: none;
     border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-/* 공지사항 컨테이너 */
-.notice-container {
+.vertical-nav button:hover {
+    background: linear-gradient(45deg, #FFA500, #FFD700);
+    box-shadow: 0px 4px 8px rgba(255, 215, 0, 0.5);
+    transform: scale(1.05);
+}
+
+/* 섹션 제목 스타일 */
+.section-header {
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    padding: 15px;
+    margin: 20px auto;
+    width: 70%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(255, 165, 0, 0.5);
+}
+
+.section-header h1 {
+    color: black;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(255, 215, 0, 0.7);
+    font-size: 1.2em;
+}
+
+/* 공지사항 & 관리자 페이지 스타일 */
+.notice-container, .admin-container {
     width: 90%;
     max-width: 800px;
     margin: 30px auto;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.notice-title, .admin-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.notice-date {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.notice-content, .admin-content {
+    font-size: 1em;
+    color: #000;
     text-align: left;
 }
 
-/* 버튼 스타일 */
-button {
-    padding: 10px 15px;
+/* 테이블 스타일 */
+table {
+    width: 90%;
+    max-width: 800px;
+    margin: 15px auto;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+table th {
+    background-color: #FFA500;
+    color: black;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
     font-size: 1em;
-    cursor: pointer;
+}
+
+table td {
+    color: black;
+    font-weight: bold;
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: 0.9em;
+}
+
+/* 트레일 맵 스타일 */
+.trail-map {
+    text-align: center;
+    margin: 20px auto;
+    padding: 15px;
+    max-width: 90%;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.trail-map img {
+    width: 100%; /* 전체 너비를 사용 */
+    max-width: 600px; /* 최대 크기 제한 */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 뒤로 가기 버튼 스타일 */
+.back-btn {
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    color: black;
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: bold;
     border: none;
-    border-radius: 5px;
-    transition: background 0.3s;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+    box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.4);
 }
 
-button:hover {
-    opacity: 0.8;
+.back-btn:hover {
+    background: linear-gradient(45deg, #FFA500, #FFD700);
+    box-shadow: 0px 6px 12px rgba(255, 215, 0, 0.6);
+    transform: scale(1.05);
 }
 
-/* 푸터 스타일 */
+/* 푸터 */
 footer {
     background-color: rgba(0, 0, 0, 0.9);
     padding: 12px 0;
@@ -89,7 +188,12 @@ footer {
     text-align: center;
 }
 
-/* 서약서 버튼 스타일 */
+.footer-info {
+    margin-top: 10px;
+    font-size: 1em;
+}
+
+/* 서약서 작성 버튼 스타일 */
 .pledge-btn {
     background: linear-gradient(45deg, #FFD700, #FFA500);
     color: black;
@@ -108,6 +212,17 @@ footer {
     background: linear-gradient(45deg, #FFA500, #FFD700);
     box-shadow: 0px 6px 12px rgba(255, 215, 0, 0.6);
     transform: scale(1.05);
+}
+/* 공지사항 페이지 스타일 */
+.notice-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 30px auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
 }
 
 /* 공지사항 목록 스타일 */
@@ -132,7 +247,29 @@ footer {
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* 공지사항 상세 페이지 스타일 */
+/* 공지사항 제목 */
+.notice-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* 공지사항 날짜 */
+.notice-date {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+/* 공지사항 내용 */
+.notice-content {
+    font-size: 1em;
+    color: #444;
+    line-height: 1.5;
+}
+
+/* 공지사항 상세페이지 스타일 */
 .notice-detail {
     width: 90%;
     max-width: 800px;
