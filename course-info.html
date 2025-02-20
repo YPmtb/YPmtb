@@ -5,25 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>트레일 정보</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="translate.js"></script> <!-- 번역 스크립트 분리 -->
-    <style>
-        /* 표 크기 조정 (한 줄 정렬 유지) */
-        table {
-            width: 100%;
-            table-layout: fixed;
-        }
-
-        th, td {
-            white-space: nowrap; /* 줄 바꿈 방지 */
-            padding: 12px;
-            text-align: center;
-        }
-
-        /* 상태 & 영상 버튼 크기 조정 */
-        .status, .video-btn {
-            min-width: 80px;
-        }
-    </style>
+    <script defer src="translate.js"></script>
 </head>
 <body>
     <header>
@@ -37,12 +19,10 @@
             <h1>트레일 정보</h1>
         </div>
 
-        <!-- 트레일 맵 -->
         <div class="trail-map">
             <img src="trail-map.jpg" alt="용평 MTB 트레일 맵">
         </div>
 
-        <!-- 트레일 목록 -->
         <table>
             <thead>
                 <tr>
@@ -53,57 +33,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td class="trail-name" data-trail="red" style="color:green;">레드</td><td class="trail-level" data-level="beginner"><span class="icon">🟢</span></td><td class="status closed">❌</td><td><button class="video-btn">준비 중</button></td></tr>
-                <tr><td class="trail-name" data-trail="ninja" style="color:green;">닌자</td><td class="trail-level" data-level="beginner"><span class="icon">🟢</span></td><td class="status closed">❌</td><td><button class="video-btn">준비 중</button></td></tr>
-                <tr><td class="trail-name" data-trail="easygo" style="color:green;">이지고</td><td class="trail-level" data-level="beginner"><span class="icon">🟢</span></td><td class="status closed">❌</td><td><button class="video-btn">준비 중</button></td></tr>
-                <tr><td class="trail-name" data-trail="rainbow" style="color:blue;">레인보우</td><td class="trail-level" data-level="intermediate"><span class="icon">🟦</span></td><td class="status closed">❌</td><td><button class="video-btn">준비 중</button></td></tr>
-                <tr><td class="trail-name" data-trail="paradise" style="color:blue;">파라다이스</td><td class="trail-level" data-level="intermediate"><span class="icon">🟦</span></td><td class="status closed">❌</td><td><button class="video-btn">준비 중</button></td></tr>
-                <tr><td class="trail-name" data-trail="kiwi" style="color:blue;">키위</td><td class="trail-level" data-level="intermediate"><span class="icon">🟦</span></td><td class="status closed">❌</td><td><button class="video-btn">준비 중</button></td></tr>
-                <tr><td class="trail-name" data-trail="jimmy" style="color:blue;">지미트레일</td><td class="trail-level" data-level="intermediate"><span class="icon">🟦</span></td><td class="status closed">❌</td><td><button class="video-btn">준비 중</button></td></tr>
-                <tr><td class="trail-name" data-trail="newred" style="color:black;">뉴레드</td><td class="trail-level" data-level="expert"><span class="icon">◆</span></td><td class="status closed">❌</td><td><button class="video-btn">준비 중</button></td></tr>
-                <tr><td class="trail-name" data-trail="thunderbolt" style="color:black;">선더볼트</td><td class="trail-level" data-level="expert"><span class="icon">◆</span></td><td class="status closed">❌</td><td><button class="video-btn">준비 중</button></td></tr>
-                <tr><td class="trail-name" data-trail="pink" style="color:black;">핑크</td><td class="trail-level" data-level="expert"><span class="icon">◆</span></td><td class="status closed">❌</td><td><button class="video-btn">준비 중</button></td></tr>
-                <tr><td class="trail-name" data-trail="airpink" style="color:black;">에어핑크</td><td class="trail-level" data-level="expert"><span class="icon">◆</span></td><td class="status closed">❌</td><td><button class="video-btn">준비 중</button></td></tr>
-                <tr><td class="trail-name" data-trail="blue" style="color:black;">블루</td><td class="trail-level" data-level="extreme"><span class="icon">◆◆</span></td><td class="status closed">❌</td><td><button class="video-btn">준비 중</button></td></tr>
-                <tr><td class="trail-name" data-trail="springbucks" style="color:black;">스프링벅스</td><td class="trail-level" data-level="extreme"><span class="icon">◆◆</span></td><td class="status closed">❌</td><td><button class="video-btn">준비 중</button></td></tr>
+                <tr><td class="trail-name">레드</td><td class="trail-level">🟢</td><td class="status closed">❌</td><td><button>준비 중</button></td></tr>
+                <tr><td class="trail-name">닌자</td><td class="trail-level">🟢</td><td class="status closed">❌</td><td><button>준비 중</button></td></tr>
+                <tr><td class="trail-name">이지고</td><td class="trail-level">🟢</td><td class="status closed">❌</td><td><button>준비 중</button></td></tr>
+                <tr><td class="trail-name">레인보우</td><td class="trail-level">🟦</td><td class="status closed">❌</td><td><button>준비 중</button></td></tr>
+                <tr><td class="trail-name">파라다이스</td><td class="trail-level">🟦</td><td class="status closed">❌</td><td><button>준비 중</button></td></tr>
+                <tr><td class="trail-name">뉴레드</td><td class="trail-level">◆</td><td class="status closed">❌</td><td><button>준비 중</button></td></tr>
+                <tr><td class="trail-name">선더볼트</td><td class="trail-level">◆</td><td class="status closed">❌</td><td><button>준비 중</button></td></tr>
+                <tr><td class="trail-name">핑크</td><td class="trail-level">◆</td><td class="status closed">❌</td><td><button>준비 중</button></td></tr>
             </tbody>
         </table>
 
-        <!-- 트레일 개방 여부 설명 -->
-        <div class="section-header trail-status-header">
-            <h1>트레일 개방 상태 안내</h1>
-        </div>
-        <table class="trail-status-table">
-            <thead>
-                <tr>
-                    <th>상태</th>
-                    <th>설명</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td class="status open" style="color:green;">✅</td><td>정비 완료 (이용 가능)</td></tr>
-                <tr><td class="status maintenance" style="color:orange;">🟧</td><td>정비 필요 (예정)</td></tr>
-                <tr><td class="status closed" style="color:red;">❌</td><td>미개방</td></tr>
-            </tbody>
-        </table>
+        <footer>
+            <p>&copy; 2025 Yongpyong MTB Park. 모든 권리 보유.</p>
+        </footer>
     </div>
-
-    <!-- 언어 선택 버튼 -->
-    <div style="text-align: center; margin: 20px 0;">
-        <button onclick="changeLanguage('ko')">한국어</button>
-        <button onclick="changeLanguage('en')">English</button>
-        <button onclick="changeLanguage('ja')">日本語</button>
-        <button onclick="changeLanguage('zh')">中文</button>
-    </div>
-
-    <!-- 뒤로 가기 버튼 -->
-    <button class="back-btn" onclick="location.href='index.html'">뒤로 가기</button>
-
-    <!-- 푸터 -->
-    <footer>
-        <p>&copy; 2025 Yongpyong MTB Park. 모든 권리 보유.</p>
-        <p>전화: 033-330-7423</p>
-        <p>주소: 올림픽로 715</p>
-    </footer>
 </body>
 </html>
