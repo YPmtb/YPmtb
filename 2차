@@ -11,7 +11,7 @@
       ko: {
         title: "용평 MTB 파크",
         tagline: "대한민국 최고의 산악 자전거 체험을 즐겨보세요!",
-        menu: ["공지사항", "트레일 정보", "운영시간 및 이용요금"],
+        menu: ["공지사항", "코스 정보", "운영시간 및 이용요금"],
         footer: "&copy; 2025 용평 MTB 파크. 모든 권리 보유."
       },
       en: {
@@ -38,6 +38,16 @@
 
       document.querySelector("footer p").innerHTML = translation.footer;
     }
+
+    // 관리자 로그인 함수
+    function adminLogin() {
+        const password = prompt("관리자 비밀번호를 입력하세요:");
+        if (password === "061016") {
+            location.href = "admin.html";
+        } else if (password !== null) {
+            alert("비밀번호가 틀렸습니다.");
+        }
+    }
   </script>
 </head>
 <body>
@@ -50,7 +60,7 @@
 <div class="content">
   <div class="vertical-nav">
     <button onclick="location.href='notices.html'">공지사항</button>
-    <button onclick="location.href='course-info.html'">트레일 정보</button>
+    <button onclick="location.href='course-info.html'">코스 정보</button>
     <button onclick="location.href='pricing.html'">운영시간 및 이용요금</button>
   </div>
 </div>
@@ -60,6 +70,9 @@
   <button onclick="changeLanguage('ko')">한국어</button>
   <button onclick="changeLanguage('en')">English</button>
 </div>
+
+<!-- 왼쪽 아래 관리자 버튼 -->
+<button class="admin-access-btn" onclick="adminLogin()">🔒 관리자</button>
 
 <footer>
   <p>&copy; 2025 용평 MTB 파크. 모든 권리 보유.</p>
