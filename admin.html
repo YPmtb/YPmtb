@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 관리</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="footer.js"></script>
 </head>
 <body>
     <header>
@@ -26,7 +25,7 @@
     </div>
 
     <script>
-        let editId = null;  // 수정할 공지 ID 저장
+        let editId = null;
 
         function loadNotices() {
             const notices = JSON.parse(localStorage.getItem("notices")) || [];
@@ -47,6 +46,8 @@
                 `;
                 noticeList.appendChild(li);
             });
+
+            console.log("📢 공지사항 목록:", notices);
         }
 
         function saveNotice() {
@@ -62,18 +63,18 @@
             }
 
             if (editId) {
-                // 기존 공지 수정
                 notices = notices.map(notice =>
                     notice.id === editId ? { ...notice, title, content, pinned: isPinned } : notice
                 );
                 editId = null;
             } else {
-                // 새 공지 추가
                 notices.push({ id: Date.now(), title, content, date, pinned: isPinned });
             }
 
             localStorage.setItem("notices", JSON.stringify(notices));
+            console.log("✅ 공지사항 저장됨:", notices);
             alert("공지사항이 저장되었습니다.");
+
             document.getElementById("noticeTitle").value = "";
             document.getElementById("noticeContent").value = "";
             document.getElementById("pinnedNotice").checked = false;
