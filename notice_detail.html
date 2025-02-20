@@ -5,25 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 상세</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="footer.js"></script>
+    <style>
+        /* 공지사항 상세 페이지 스타일 */
+        .content {
+            width: 90%;
+            max-width: 800px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        /* 공지 제목 스타일 */
+        #noticeTitle {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        /* 공지 날짜 스타일 */
+        #noticeDate {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        /* 공지 내용 스타일 (검은색, 자동 줄바꿈) */
+        #noticeContent {
+            font-size: 1em;
+            color: #000;
+            white-space: pre-wrap; /* 줄바꿈 유지 */
+            word-wrap: break-word; /* 긴 단어 자동 줄바꿈 */
+        }
+
+        /* 뒤로 가기 버튼 스타일 */
+        .back-btn {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: black;
+            padding: 12px 24px;
+            font-size: 1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+            box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.4);
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(45deg, #FFA500, #FFD700);
+            box-shadow: 0px 6px 12px rgba(255, 215, 0, 0.6);
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>공지사항 상세</h1>
     </header>
 
-    <div class="content notice-detail">
+    <div class="content">
         <h2 id="noticeTitle">공지 제목</h2>
         <p id="noticeDate"><strong>날짜:</strong> </p>
         <p id="noticeContent">공지 내용이 표시됩니다.</p>
-        <img id="noticeImage" class="notice-image" style="display: none;"> 
     </div>
 
-    <button class="back-btn" onclick="window.location.href='notices.html'">목록으로</button>
+    <button class="back-btn" onclick="history.back()">목록으로</button>
 
     <script>
+        // URL에서 공지사항 ID 가져오기
         const params = new URLSearchParams(window.location.search);
         const noticeId = params.get("id");
 
+        // 공지사항 데이터 불러오기
         const notices = JSON.parse(localStorage.getItem("notices")) || [];
         const notice = notices.find(n => n.id == noticeId);
 
@@ -31,16 +94,9 @@
             document.getElementById("noticeTitle").textContent = notice.title;
             document.getElementById("noticeDate").textContent = `날짜: ${notice.date}`;
             document.getElementById("noticeContent").textContent = notice.content;
-            
-            if (notice.image) {
-                const imgElement = document.getElementById("noticeImage");
-                imgElement.src = notice.image;
-                imgElement.style.display = "block";
-            }
-
-            console.log("📢 상세 페이지에서 불러온 공지:", notice);
         } else {
             document.getElementById("noticeTitle").textContent = "공지사항을 찾을 수 없습니다.";
+            document.getElementById("noticeContent").textContent = "";
         }
     </script>
 </body>
