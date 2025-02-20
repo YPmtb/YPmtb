@@ -81,8 +81,9 @@ input[type="file"] {
 
 /* 공지사항 썸네일 (목록 페이지) */
 .notice-thumbnail {
-    width: 100px;
-    height: auto;
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
     margin-top: 5px;
     border-radius: 5px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -93,6 +94,8 @@ input[type="file"] {
     width: 100%;
     max-width: 600px;
     height: auto;
+    max-height: 400px;
+    object-fit: contain;
     margin-top: 10px;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
