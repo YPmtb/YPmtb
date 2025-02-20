@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 관리</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="footer.js"></script>
 </head>
 <body>
     <header>
@@ -13,12 +14,8 @@
 
     <div class="content">
         <h2>새 공지사항 추가 / 수정</h2>
-        <input type="text" id="noticeTitle" placeholder="공지 제목" class="input-large">
-        <textarea id="noticeContent" placeholder="공지 내용을 입력하세요" class="textarea-large"></textarea>
-        
-        <!-- 🔹 이미지 업로드 기능 추가 -->
-        <input type="file" id="noticeImage" accept="image/*">
-        
+        <input type="text" id="noticeTitle" placeholder="공지 제목">
+        <textarea id="noticeContent" placeholder="공지 내용을 입력하세요"></textarea>
         <label>
             <input type="checkbox" id="pinnedNotice"> 상단 고정
         </label>
@@ -41,9 +38,6 @@
                 return;
             }
 
-            // 🔹 공지사항을 상단 고정 여부 + 최신순으로 정렬
-            notices.sort((a, b) => (b.pinned - a.pinned) || (b.id - a.id));
-
             notices.forEach(notice => {
                 const li = document.createElement("li");
                 li.innerHTML = `
@@ -53,8 +47,6 @@
                 `;
                 noticeList.appendChild(li);
             });
-
-            console.log("📢 공지사항 목록:", notices);
         }
 
         function saveNotice() {
@@ -64,47 +56,25 @@
             const date = new Date().toLocaleDateString();
             let notices = JSON.parse(localStorage.getItem("notices")) || [];
 
-            // 🔹 이미지 파일 업로드 처리
-            const fileInput = document.getElementById("noticeImage");
-            let imageUrl = "";
-
-            if (fileInput.files.length > 0) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    imageUrl = event.target.result;
-                    saveToStorage(title, content, date, isPinned, imageUrl, notices);
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            } else {
-                saveToStorage(title, content, date, isPinned, imageUrl, notices);
-            }
-        }
-
-        function saveToStorage(title, content, date, isPinned, imageUrl, notices) {
             if (!title || !content) {
                 alert("제목과 내용을 입력해주세요.");
                 return;
             }
 
             if (editId) {
-                // 기존 공지 수정
                 notices = notices.map(notice =>
-                    notice.id === editId ? { ...notice, title, content, date, pinned: isPinned, image: imageUrl } : notice
+                    notice.id === editId ? { ...notice, title, content, pinned: isPinned } : notice
                 );
                 editId = null;
             } else {
-                // 새 공지 추가
-                notices.push({ id: Date.now(), title, content, date, pinned: isPinned, image: imageUrl });
+                notices.push({ id: Date.now(), title, content, date, pinned: isPinned });
             }
 
             localStorage.setItem("notices", JSON.stringify(notices));
-            console.log("✅ 공지사항 저장됨:", notices);
             alert("공지사항이 저장되었습니다.");
-
             document.getElementById("noticeTitle").value = "";
             document.getElementById("noticeContent").value = "";
             document.getElementById("pinnedNotice").checked = false;
-            document.getElementById("noticeImage").value = ""; // 파일 입력 초기화
             loadNotices();
         }
 
