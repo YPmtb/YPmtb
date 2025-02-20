@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 상세</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="footer.js"></script>
 </head>
 <body>
     <header>
@@ -18,7 +17,7 @@
         <p id="noticeContent">공지 내용이 표시됩니다.</p>
     </div>
 
-    <button class="back-btn" onclick="location.href='notices.html'">목록으로</button>
+    <button class="back-btn" onclick="history.back()">목록으로</button>
 
     <script>
         // URL에서 공지사항 ID 가져오기
@@ -33,6 +32,7 @@
             document.getElementById("noticeTitle").textContent = notice.title;
             document.getElementById("noticeDate").textContent = `날짜: ${notice.date}`;
             document.getElementById("noticeContent").textContent = notice.content;
+            console.log("📢 상세 페이지에서 불러온 공지:", notice);
         } else {
             document.getElementById("noticeTitle").textContent = "공지사항을 찾을 수 없습니다.";
         }
