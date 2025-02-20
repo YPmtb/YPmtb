@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="notices.js"></script>
 </head>
 <body>
     <header>
@@ -16,10 +15,7 @@
         <ul id="noticesList" class="notice-list"></ul>
     </div>
 
-    <!-- 뒤로 가기 버튼 추가 -->
-    <button class="back-btn" onclick="goBack()">뒤로 가기</button>
-
-    <footer></footer>
+    <button class="back-btn" onclick="history.back()">뒤로 가기</button>
 
     <script>
         function loadNotices() {
@@ -37,21 +33,15 @@
             notices.forEach(notice => {
                 const li = document.createElement("li");
                 li.innerHTML = `
-                    <a href="notice-detail.html?id=${notice.id}">
+                    <a href="./notice_detail.html?id=${notice.id}">
                         <strong>${notice.pinned ? "📌 " : ""}${notice.title}</strong>
                         <span class="date">${notice.date}</span>
                     </a>
                 `;
                 list.appendChild(li);
             });
-        }
 
-        function goBack() {
-            if (document.referrer) {
-                history.back();
-            } else {
-                window.location.href = "index.html"; // 이전 페이지가 없을 경우 홈으로 이동
-            }
+            console.log("📢 불러온 공지사항:", notices);
         }
 
         document.addEventListener("DOMContentLoaded", loadNotices);
