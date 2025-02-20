@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="notices.js"></script>
+</head>
+<body>
+    <header>
+        <h1>공지사항</h1>
+    </header>
+
+    <div class="content">
+        <ul id="noticesList" class="notice-list"></ul>
+    </div>
+
+    <!-- 뒤로 가기 버튼 추가 -->
+    <button class="back-btn" onclick="goBack()">뒤로 가기</button>
+
+    <footer></footer>
+
+    <script>
+        function loadNotices() {
+            const notices = JSON.parse(localStorage.getItem("notices")) || [];
+            const list = document.getElementById("noticesList");
+            list.innerHTML = "";
+
+            if (notices.length === 0) {
+                list.innerHTML = "<li class='empty'>등록된 공지사항이 없습니다.</li>";
+                return;
+            }
+
+            notices.sort((a, b) => (b.pinned - a.pinned) || (b.id - a.id));
+
+            notices.forEach(notice => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <a href="notice-detail.html?id=${notice.id}">
+                        <strong>${notice.pinned ? "📌 " : ""}${notice.title}</strong>
+                        <span class="date">${notice.date}</span>
+                    </a>
+                `;
+                list.appendChild(li);
+            });
+        }
+
+        function goBack() {
+            if (document.referrer) {
+                history.back();
+            } else {
+                window.location.href = "index.html"; // 이전 페이지가 없을 경우 홈으로 이동
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", loadNotices);
+    </script>
+</body>
+</html>

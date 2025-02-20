@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>운영시간 및 이용요금</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="translate.js"></script>
+</head>
+<body>
+    <header>
+        <h1 id="title">운영시간 및 이용요금</h1>
+    </header>
+
+    <div class="content">
+        <!-- 운영시간 -->
+        <div class="section-header">
+            <h1 id="hoursHeader">운영시간</h1>
+        </div>
+        <table class="hours-table">
+            <thead>
+                <tr>
+                    <th id="hoursTableDay">요일</th>
+                    <th id="hoursTableInfo">이용정보</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="monday">월요일</td>
+                    <td id="mondayInfo">휴무 (공휴일 제외)</td>
+                </tr>
+                <tr>
+                    <td id="weekdays">화요일 ~ 금요일</td>
+                    <td id="weekdaysInfo">
+                        반일권 (오전) <br> 10:00 ~ 14:30 <br>
+                        반일권 (오후) <br> 14:00 ~ 17:30 <br>
+                        종일권 <br> 10:00 ~ 17:30
+                    </td>
+                </tr>
+                <tr>
+                    <td id="weekend">토요일, 일요일</td>
+                    <td id="weekendInfo">
+                        반일권 (오전) <br> 09:00 ~ 12:00 <br>
+                        반일권 (오후) <br> 13:30 ~ 17:00 <br>
+                        종일권 <br> 09:00 ~ 17:00
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 이용요금 -->
+        <div class="section-header">
+            <h1 id="pricingHeader">이용요금</h1>
+        </div>
+        <table class="pricing-table">
+            <thead>
+                <tr>
+                    <th id="pricingTableTicket">이용권</th>
+                    <th id="pricingTableAdult">성인</th>
+                    <th id="pricingTableYouth">청소년</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="liftHalf">리프트권 (반일)</td>
+                    <td>₩40,000</td>
+                    <td>₩30,000</td>
+                </tr>
+                <tr>
+                    <td id="liftFull">리프트권 (주간)</td>
+                    <td>₩50,000</td>
+                    <td>₩40,000</td>
+                </tr>
+                <tr>
+                    <td id="seasonPass">MTB 시즌권</td>
+                    <td>₩600,000</td>
+                    <td>₩450,000</td>
+                </tr>
+                <tr>
+                    <td id="familyPass">
+                        가족 시즌권 (2인)<br>
+                        <span class="small-text" id="familyNote">※ 소인 구분 없음</span>
+                    </td>
+                    <td colspan="2">₩900,000</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 보호대 대여 비용 -->
+        <div class="section-header">
+            <h1 id="gearHeader">보호대 대여 비용</h1>
+        </div>
+        <table class="gear-table">
+            <thead>
+                <tr>
+                    <th id="gearTableEquipment">장비</th>
+                    <th id="gearTableCost">대여 비용</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="gearItem">헬멧 / 보호대</td>
+                    <td>₩10,000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 언어 선택 -->
+    <div class="language-buttons">
+        <button onclick="changeLanguage('ko')">한국어</button>
+        <button onclick="changeLanguage('en')">English</button>
+    </div>
+
+    <!-- 뒤로 가기 버튼 -->
+    <button class="back-btn" onclick="location.href='index.html'" id="backButton">뒤로 가기</button>
+
+    <!-- 푸터를 불러올 영역 -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // footer.html을 불러오는 스크립트
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
+</body>
+</html>

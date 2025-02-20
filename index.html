@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>용평 MTB 파크</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // 언어별 번역 데이터
+    const translations = {
+      ko: {
+        title: "용평 MTB 파크",
+        tagline: "대한민국 최고의 산악 자전거 체험을 즐겨보세요!",
+        menu: ["공지사항", "코스 정보", "운영시간 및 이용요금"],
+        footer: "&copy; 2025 용평 MTB 파크. 모든 권리 보유."
+      },
+      en: {
+        title: "Yongpyong MTB Park",
+        tagline: "Enjoy the best mountain biking experience in Korea!",
+        menu: ["Notices", "Course Info", "Operating Hours & Rates"],
+        footer: "&copy; 2025 Yongpyong MTB Park. All rights reserved."
+      }
+    };
+
+    // 언어 변경 함수
+    function changeLanguage(lang) {
+      const translation = translations[lang];
+      if (!translation) return;
+
+      // 제목, 슬로건, 메뉴 및 푸터 텍스트 업데이트
+      document.querySelector("h1").textContent = translation.title;
+      document.querySelector("header p").textContent = translation.tagline;
+
+      const menuButtons = document.querySelectorAll(".vertical-nav button");
+      menuButtons.forEach((btn, index) => {
+        btn.textContent = translation.menu[index];
+      });
+
+      document.querySelector("footer p").innerHTML = translation.footer;
+    }
+  </script>
+</head>
+<body>
+
+<header>
+  <h1>Yongpyong MTB Park</h1>
+  <p>대한민국 최고의 산악 자전거 체험을 즐겨보세요!</p>
+</header>
+
+<div class="content">
+  <div class="vertical-nav">
+    <button onclick="location.href='notices.html'">공지사항</button>
+    <button onclick="location.href='course-info.html'">코스 정보</button>
+    <button onclick="location.href='pricing.html'">운영시간 및 이용요금</button>
+  </div>
+</div>
+
+<!-- 언어 선택 섹션 -->
+<div style="text-align: center; margin: 20px 0;">
+  <button onclick="changeLanguage('ko')">한국어</button>
+  <button onclick="changeLanguage('en')">English</button>
+</div>
+
+<footer>
+  <p>&copy; 2025 용평 MTB 파크. 모든 권리 보유.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 관리</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="footer.js"></script>
+</head>
+<body>
+    <header>
+        <h1>공지사항 관리</h1>
+    </header>
+
+    <div class="content">
+        <h2>새 공지사항 추가 / 수정</h2>
+        <input type="text" id="noticeTitle" placeholder="공지 제목">
+        <textarea id="noticeContent" placeholder="공지 내용을 입력하세요"></textarea>
+        <label>
+            <input type="checkbox" id="pinnedNotice"> 상단 고정
+        </label>
+        <button onclick="saveNotice()">공지 저장</button>
+
+        <h2>공지사항 목록</h2>
+        <ul id="noticeList"></ul>
+    </div>
+
+    <script>
+        let editId = null;  // 수정할 공지 ID 저장
+
+        function loadNotices() {
+            const notices = JSON.parse(localStorage.getItem("notices")) || [];
+            const noticeList = document.getElementById("noticeList");
+            noticeList.innerHTML = "";
+
+            if (notices.length === 0) {
+                noticeList.innerHTML = "<li>등록된 공지사항이 없습니다.</li>";
+                return;
+            }
+
+            notices.forEach(notice => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <strong>${notice.pinned ? "📌 " : ""}${notice.title}</strong>
+                    <button onclick="editNotice(${notice.id})">수정</button>
+                    <button onclick="deleteNotice(${notice.id})">삭제</button>
+                `;
+                noticeList.appendChild(li);
+            });
+        }
+
+        function saveNotice() {
+            const title = document.getElementById("noticeTitle").value;
+            const content = document.getElementById("noticeContent").value;
+            const isPinned = document.getElementById("pinnedNotice").checked;
+            const date = new Date().toLocaleDateString();
+            let notices = JSON.parse(localStorage.getItem("notices")) || [];
+
+            if (!title || !content) {
+                alert("제목과 내용을 입력해주세요.");
+                return;
+            }
+
+            if (editId) {
+                // 기존 공지 수정
+                notices = notices.map(notice =>
+                    notice.id === editId ? { ...notice, title, content, pinned: isPinned } : notice
+                );
+                editId = null;
+            } else {
+                // 새 공지 추가
+                notices.push({ id: Date.now(), title, content, date, pinned: isPinned });
+            }
+
+            localStorage.setItem("notices", JSON.stringify(notices));
+            alert("공지사항이 저장되었습니다.");
+            document.getElementById("noticeTitle").value = "";
+            document.getElementById("noticeContent").value = "";
+            document.getElementById("pinnedNotice").checked = false;
+            loadNotices();
+        }
+
+        function editNotice(id) {
+            const notices = JSON.parse(localStorage.getItem("notices")) || [];
+            const notice = notices.find(n => n.id === id);
+            if (!notice) return;
+
+            document.getElementById("noticeTitle").value = notice.title;
+            document.getElementById("noticeContent").value = notice.content;
+            document.getElementById("pinnedNotice").checked = notice.pinned;
+            editId = id;
+        }
+
+        function deleteNotice(id) {
+            if (!confirm("정말 삭제하시겠습니까?")) return;
+            let notices = JSON.parse(localStorage.getItem("notices")) || [];
+            notices = notices.filter(notice => notice.id !== id);
+            localStorage.setItem("notices", JSON.stringify(notices));
+            alert("공지사항이 삭제되었습니다.");
+            loadNotices();
+        }
+
+        document.addEventListener("DOMContentLoaded", loadNotices);
+    </script>
+</body>
+</html>
