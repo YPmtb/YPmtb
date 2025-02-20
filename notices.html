@@ -15,8 +15,7 @@
         <ul id="noticesList" class="notice-list"></ul>
     </div>
 
-    <!-- 🔹 뒤로 가기 버튼: 항상 메인화면(index.html)으로 이동 -->
-    <button class="back-btn" onclick="goToMain()">메인 화면으로</button>
+    <button class="back-btn" onclick="window.location.href='index.html'">메인 화면으로</button>
 
     <script>
         function loadNotices() {
@@ -37,17 +36,13 @@
                     <a href="./notice_detail.html?id=${notice.id}">
                         <strong>${notice.pinned ? "📌 " : ""}${notice.title}</strong>
                         <span class="date">${notice.date}</span>
+                        ${notice.image ? `<br><img src="${notice.image}" class="notice-thumbnail">` : ""}
                     </a>
                 `;
                 list.appendChild(li);
             });
 
             console.log("📢 불러온 공지사항:", notices);
-        }
-
-        // ✅ 메인 화면(index.html)으로 이동하는 함수
-        function goToMain() {
-            window.location.href = "index.html";
         }
 
         document.addEventListener("DOMContentLoaded", loadNotices);
