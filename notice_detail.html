@@ -11,11 +11,11 @@
         <h1>공지사항 상세</h1>
     </header>
 
-    <div class="content">
+    <div class="content notice-detail">
         <h2 id="noticeTitle">공지 제목</h2>
         <p id="noticeDate"><strong>날짜:</strong> </p>
         <p id="noticeContent">공지 내용이 표시됩니다.</p>
-        <img id="noticeImage" class="notice-image" style="display: none;"> <!-- 이미지 표시 영역 -->
+        <img id="noticeImage" class="notice-image" style="display: none;"> 
     </div>
 
     <button class="back-btn" onclick="window.location.href='notices.html'">목록으로</button>
@@ -35,7 +35,7 @@
             if (notice.image) {
                 const imgElement = document.getElementById("noticeImage");
                 imgElement.src = notice.image;
-                imgElement.style.display = "block"; // 이미지가 있을 때만 표시
+                imgElement.style.display = "block";
             }
 
             console.log("📢 상세 페이지에서 불러온 공지:", notice);
