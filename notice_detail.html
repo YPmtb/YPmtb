@@ -15,16 +15,15 @@
         <h2 id="noticeTitle">공지 제목</h2>
         <p id="noticeDate"><strong>날짜:</strong> </p>
         <p id="noticeContent">공지 내용이 표시됩니다.</p>
+        <img id="noticeImage" class="notice-image" style="display: none;"> <!-- 이미지 표시 영역 -->
     </div>
 
-    <button class="back-btn" onclick="history.back()">목록으로</button>
+    <button class="back-btn" onclick="window.location.href='notices.html'">목록으로</button>
 
     <script>
-        // URL에서 공지사항 ID 가져오기
         const params = new URLSearchParams(window.location.search);
         const noticeId = params.get("id");
 
-        // 공지사항 데이터 불러오기
         const notices = JSON.parse(localStorage.getItem("notices")) || [];
         const notice = notices.find(n => n.id == noticeId);
 
@@ -32,6 +31,13 @@
             document.getElementById("noticeTitle").textContent = notice.title;
             document.getElementById("noticeDate").textContent = `날짜: ${notice.date}`;
             document.getElementById("noticeContent").textContent = notice.content;
+            
+            if (notice.image) {
+                const imgElement = document.getElementById("noticeImage");
+                imgElement.src = notice.image;
+                imgElement.style.display = "block"; // 이미지가 있을 때만 표시
+            }
+
             console.log("📢 상세 페이지에서 불러온 공지:", notice);
         } else {
             document.getElementById("noticeTitle").textContent = "공지사항을 찾을 수 없습니다.";
